@@ -3,12 +3,12 @@
  * Used getElementsByClassName as it has a faster load time than querySelector and it produces an html collection instead of a generic node list. 
  * The html collection will only contain any node element, which is more specific than a node list.
  */
-let cardList = document.getElementsByClassName('card');
+
 
 /* Used destructuring here to grab the items in the node list created above and place them into an array 
 *so that that array can be looped over and it can be used in the shuffle function.*/
 
-let allCards = [...cardList];
+
 
 /*
  * Display the cards on the page
@@ -17,22 +17,59 @@ let allCards = [...cardList];
  *   - add each card's HTML to the page
  */
 
- let shuffledCards = shuffle(allCards);
+function startNewGame() {
+    let cards = [
+        "fa-diamond",
+        "fa-paper-plane-o",
+        "fa-anchor",
+        "fa-bolt",
+        "fa-cube",
+        "fa-leaf",
+        "fa-bicycle",
+        "fa-bomb",
+        "fa-diamond",
+        "fa-paper-plane-o",
+        "fa-anchor",
+        "fa-bolt",
+        "fa-cube",
+        "fa-leaf",
+        "fa-bicycle",
+        "fa-bomb"
+    ];
+    const cardDeck = document.querySelector(".deck");
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    shuffle(cards);
+    
+    cardHTML = ``;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+    for (let card of cards) {
+        cardHTML += `<li class="card">
+                        <i class="fa ${card}"></i>
+                     </li>`;
+    }
+    cardDeck.innerHTML = cardHTML;
+}
+ startNewGame();
+
+    
+    // Shuffle function from http://stackoverflow.com/a/2450976
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+    
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+    
+        return array;
     }
 
-    return array;
-}
+
+ 
+
 
 
 /*
@@ -49,6 +86,9 @@ function shuffle(array) {
 
  /* Used a function expression here instead of a declaration since I am using the function as a callback inside of the for loop below. 
  *Used the "this" keyword to reference the individual cards in the for loop below. */
+
+let cardList = document.getElementsByClassName('card');
+let allCards = [...cardList];
 
 const displayCard = function() {
     this.classList.toggle("open");
