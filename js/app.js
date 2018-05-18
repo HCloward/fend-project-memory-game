@@ -37,7 +37,7 @@ function startNewGame() {
     }
     cardDeck.innerHTML = cardHTML;
 }
- startNewGame();
+ window.onload = startNewGame();
     
     // Shuffle function from http://stackoverflow.com/a/2450976
     function shuffle(array) {
@@ -82,15 +82,26 @@ let allCards = [...cardList];
 /* Used a function expression here instead of a declaration since I am using the function as a callback inside of the for loop below. 
  *Used the "this" keyword to reference the individual cards in the for loop below. */
 
+let facedCards = [];
+
 const displayCard = function() {
-    this.classList.toggle("open");
-    this.classList.toggle("show");
+    this.classList.add("open", "show");
+    console.log(this.firstElementChild.className + facedCards[1]);
+    facedCards.push(this.firstElementChild.className);
+    if(facedCards.length === 2){
+        if(event.target.firstElement.className === facedCards[1]) {
+            this.classList.add("match");
+        } else {
+            this.classList.remove("open", "show");
+        }
+    } 
 };
+    
+
 
 /*
- * set up the event listener for each card. */
- for (let i = 0; i < allCards.length; i++) {
-     allCards[i].addEventListener("click", displayCard);
- };
-
- 
+     * set up the event listener for each card. */
+    
+    for (let i = 0; i < allCards.length; i++) {
+        allCards[i].addEventListener("click", displayCard);
+    };
