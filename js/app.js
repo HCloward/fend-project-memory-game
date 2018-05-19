@@ -7,6 +7,7 @@ let gameTimer;
 let matches;
 let moves;
 let modal;
+let starsRating;
 let wait = true;
 
 /*This function adds the open and show classes to cards when clicked and fires the match function. */
@@ -43,20 +44,30 @@ function setStars() {
     /*Grabs the section in the html that has the moves count and updates it based on moves variable. */
     document.getElementById("moves").textContent = moves;
     /*Conditional used to determine what stars to display depending on the number of moves/2clicks occur. */
-    if (moves <= 10) return;
+    if (moves <= 10){
+        starsRating = 3;
+        return;
+    } 
     /*Grabs stars elements so that later the classes can be manipulated to display clear starts instead of full stars. */
     let stars = document.getElementById("stars").children;
     /*If the user has taken over 10 moves/2 clicks, then one star is replaced with a star outline. */
     stars[2].firstElementChild.classList.remove("fa-star");
     stars[2].firstElementChild.classList.add("fa-star-o");
-    if (moves <= 20) return;
+    if (moves <= 20){
+        starsRating = 2;
+        return;
+    } 
     /*If the user has taken over 20 moves/2 clicks, then an addional star is repalced with a star outline. */
     stars[1].firstElementChild.classList.remove("fa-star");
     stars[1].firstElementChild.classList.add("fa-star-o");
-    if (moves <= 30) return;
+    if (moves <= 30) {
+        starsRating = 1;
+        return;
+    } 
     /*If the user takes more than 30 moves/2 clicks, then all three stars are replaced with star outlines. */
     stars[0].firstElementChild.classList.remove("fa-star");
     stars[0].firstElementChild.classList.add("fa-star-o");
+    starsRating = 0;
 }
 
 /*function that sets stars back to default of three stars at beginning of game*/
@@ -106,7 +117,7 @@ function winGame() {
     clearTimeout(gameTimer);
     modal = document.createElement("div");
     modal.classList.add("modal");
-    modal.innerHTML = 'You win! Your time is ' + parseInt(gameTime/60) + ":" + ("0" + gameTime%60).substr(-2, 2) + '<input type="button" value="OK">';
+    modal.innerHTML = 'Congratulations, you win! Your time is ' + parseInt(gameTime/60) + ":" + ("0" + gameTime%60).substr(-2, 2) + " seconds. " + "<br />" + "Your star rating is: " + starsRating + " out of 3 stars." + "<br />" + '<input type="button" value="Play Again">';
     modal.lastElementChild.addEventListener("click", clearModal);
     container.appendChild(modal);
 }

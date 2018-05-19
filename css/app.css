@@ -39,7 +39,7 @@ h1 {
 
 .deck {
     width: 660px;
-    min-height: 680px;
+    min-height: 681px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -95,7 +95,7 @@ h1 {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 3em 0 0;
 }
 
 .score-panel .stars li {
@@ -109,15 +109,73 @@ h1 {
 }
 
 .modal {
-    
-    position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    padding: 2em; 
+    width: 60%; 
+    height: 40%;
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.75); /* Black w/ opacity */
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: -20em;
+}
+
+input {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 3em;
+    cursor: default;
+}
+
+#time {
+    padding-left: 3em;
+}
+
+@media screen and (max-width: 700px) {
+    .deck {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .deck {
+        height: 1500px;
+    }
+
+    .modal {
+        margin-top: -45em;
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 550px) and (max-width: 600px) {
+    .deck {
+        width: 90%;
+        height: 1000px;
+    }
+
+    .modal {
+        margin-top: -30em;
+    }
+}
+
+@media screen and (min-width: 361px) and (max-width: 549px) {
+    .deck {
+        width: 100%;
+        height: 1300px;
+    }
+
+    .modal {
+        margin-top: -40em;
+        width: 90%;
+    }
+
 }
