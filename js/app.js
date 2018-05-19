@@ -205,7 +205,7 @@ function startNewGame() {
     for (let i = 0; i < allCards.length; i++) {
         allCards[i].addEventListener("click", displayCard);
     }
-    document.getElementById("restart").addEventListener("click", startNewGame);
+    document.getElementById("restart").addEventListener("click", clearModal);
     document.getElementById("time").textContent = "0:00";
 
     /*Initializing variables that keep track of time, matches, and moves. */
