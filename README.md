@@ -18,6 +18,11 @@ This is a memory game application written using javascript.
 
 For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
+
+## Dependencies
+
+I use a Bootstrap CDN to access the Font Awesome icons for the cards. The link is in the head of my Index.
+
 ## Contributing
 
 This repository is a project for a class. Therefore, I will not accept pull requests.

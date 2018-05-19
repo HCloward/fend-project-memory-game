@@ -64,10 +64,6 @@ function setStars() {
         starsRating = 1;
         return;
     } 
-    /*If the user takes more than 30 moves/2 clicks, then all three stars are replaced with star outlines. */
-    stars[0].firstElementChild.classList.remove("fa-star");
-    stars[0].firstElementChild.classList.add("fa-star-o");
-    starsRating = 0;
 }
 
 /*function that sets stars back to default of three stars at beginning of game*/
@@ -112,19 +108,20 @@ function checkMatch() {
 }
 /*This function fires after a user has matched all 8 sets of cards and creates a modal with all the pertinent info. */
 function winGame() {
-    let container = document.getElementById("container");
+    let modal = document.getElementById("modal");
     /*Stops the timer. */
     clearTimeout(gameTimer);
-    modal = document.createElement("div");
+    
     modal.classList.add("modal");
-    modal.innerHTML = 'Congratulations, you win! Your time is ' + parseInt(gameTime/60) + ":" + ("0" + gameTime%60).substr(-2, 2) + " seconds. " + "<br />" + "Your star rating is: " + starsRating + " out of 3 stars." + "<br />" + '<input type="button" value="Play Again">';
+    modal.innerHTML = 'Congratulations, you win! Your time is ' + parseInt(gameTime/60) + ":" + ("0" + gameTime%60).substr(-2, 2) + " seconds. " + "<br />" + "It took you " + moves + " moves to win. " + "</ br>" + "Your star rating is: " + starsRating + " out of 3 stars." + "<br />" + '<input type="button" value="Play Again">';
     modal.lastElementChild.addEventListener("click", clearModal);
     container.appendChild(modal);
 }
 
 /*Removes the modal when user clicks ok and restarts game. */
 function clearModal() {
-    document.getElementById("container").removeChild(modal);
+    document.getElementById("modal").removeAttribute("class");
+    document.getElementById("modal").innerHTML = '';
     startNewGame();
 }
 
@@ -205,6 +202,7 @@ function startNewGame() {
     for (let i = 0; i < allCards.length; i++) {
         allCards[i].addEventListener("click", displayCard);
     }
+    
     document.getElementById("restart").addEventListener("click", clearModal);
     document.getElementById("time").textContent = "0:00";
 
@@ -215,5 +213,8 @@ function startNewGame() {
     resetStars();
     wait = false;
 }
+
+
+
 /*Starts game immediately when window loads. */
 window.onload = startNewGame();
